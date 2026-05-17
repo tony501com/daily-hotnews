@@ -7,7 +7,7 @@ from ddgs import DDGS
 import trafilatura
 import requests
 
-OUTPUT_DIR = "output"
+OUTPUT_DIR = "docs"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def fetch_and_enrich():
