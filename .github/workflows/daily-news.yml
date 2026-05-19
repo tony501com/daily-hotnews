@@ -39,3 +39,4 @@ jobs:
           else
             git commit -m "Update hot news - $(date '+%Y-%m-%d %H:%M:%S UTC')"
             git push
+          fi
