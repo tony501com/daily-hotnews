@@ -29,6 +29,10 @@ if not match:
     print("未找到数据")
     exit()
 
+OUTPUT_DIR = "docs"
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+
 json_str = match.group(1)
 data = json.loads(json_str)
 
@@ -54,8 +58,10 @@ for item in hot_items:
 filtered_items_clean = clean_surrogates(filtered_items)
 
 # 6. 保存为 JSON 文件（只包含四个字段）
-with open("hot_data.json", "w", encoding="utf-8") as f:
+json_path = os.path.join(OUTPUT_DIR, "latest.json")
+with open(json_path, "w", encoding="utf-8") as f:
     json.dump(filtered_items_clean, f, ensure_ascii=False, indent=2)
+
 print("已保存 hot_data.json（仅含 appUrl, query, word, desc）")
 
 # 7. 生成老年人友好的 HTML 文件（使用同样的 cleaned 数据）
@@ -147,6 +153,9 @@ html_content = """<!DOCTYPE html>
 
 # 写入 index.html 前再次清理整个字符串中的代理对
 html_content_clean = html_content.encode('utf-8', 'ignore').decode('utf-8')
-with open("index.html", "w", encoding="utf-8") as f:
+
+html_path = os.path.join(OUTPUT_DIR, "index.html")
+with open(html_path, 'w', encoding='utf-8') as f:
     f.write(html_content_clean)
+
 print("已生成 index.html，请用浏览器打开查看（适合老年人阅读，desc 在每个卡片底部）")
