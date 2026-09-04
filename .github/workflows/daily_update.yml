@@ -9,6 +9,8 @@ on:
 
 permissions:
   contents: write # 赋予脚本写入仓库和更新网页的权限
+  id-token: write  # 允许 GitHub Pages 部署获取 ID Token
+  pages: write     # 允许部署到 GitHub Pages
 
 jobs:
   run-spider:
